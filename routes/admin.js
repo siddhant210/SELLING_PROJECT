@@ -11,7 +11,7 @@ adminRouter.post("/signup", async function(req, res) {
     const { email, password, firstName, lastName } = req.body; // TODO: adding zod validation
     // TODO: hash the password so plaintext pw is not stored in the DB
 
-    // TODO: Put inside a try catch block
+    // TODO: Put inside a try catch block to catch duplicate email error
     await adminModel.create({
         email: email,
         password: password,
@@ -20,7 +20,7 @@ adminRouter.post("/signup", async function(req, res) {
     })
     
     res.json({
-        message: "Signup succeeded"
+        message: "Signup successful"
     })
 })
 
@@ -45,7 +45,7 @@ adminRouter.post("/signin", async function(req, res) {
         })
     } else {
         res.status(403).json({
-            message: "Incorrect credentials"
+            message: "Incorrect credential"
         })
     }
 })
